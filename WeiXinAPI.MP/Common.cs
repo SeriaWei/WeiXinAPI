@@ -8,6 +8,10 @@ namespace WeiXinAPI.MP
 {
     public static class Common
     {
+        public static bool Check(string signature, string token, string timestamp, string nonce)
+        {
+            return signature.Equals(GetSignature(token, timestamp, nonce));
+        }
         public static string GetSignature(string token, string timestamp, string nonce)
         {
             var arr = new[] { token, timestamp, nonce }.OrderBy(z => z).ToArray();

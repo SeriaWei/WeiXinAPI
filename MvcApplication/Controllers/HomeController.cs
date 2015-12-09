@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WeiXinAPI.MP;
 
 namespace MvcApplication.Controllers
 {
@@ -40,32 +42,32 @@ namespace MvcApplication.Controllers
 
             return View();
         }
+
+
         [ActionName("weixinapi")]
         public ContentResult Get(string signature, string timestamp, string nonce, string echostr)
         {
-            SHA1 sha1 = new SHA1CryptoServiceProvider();
-            string s = Request.QueryString["signature"];
-            string sig2 = GetSignature(Token, timestamp, nonce);
-            if (sig2.Equals(signature))
+            if (Common.Check(signature, Token, timestamp, nonce))
             {
                 Content(echostr);
             }
             return Content(null);
         }
+
         [HttpPost]
         [ActionName("weixinapi")]
-        public JsonResult Post(string signature, string timestamp, string nonce, string echostr)
+        public ContentResult Post(string signature, string timestamp, string nonce, string echostr)
         {
-            SHA1 sha1 = new SHA1CryptoServiceProvider();
-            string s = Request.QueryString["signature"];
-            string sig2 = GetSignature(Token, timestamp, nonce);
-            if (sig2.Equals(signature))
+            if (Common.Check(signature, Token, timestamp, nonce))
             {
+                var app = new Application(AppID, AppSecret, Token);
+                app.GetToken();
                 string data = new StreamReader(Request.InputStream).ReadToEnd();
-                Response.Write(sig2);
+                Content(echostr);
             }
-            return Json(null, JsonRequestBehavior.AllowGet);
+
+            return Content(null);
         }
-        
+
     }
 }
