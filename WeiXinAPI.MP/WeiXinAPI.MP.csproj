@@ -45,11 +45,13 @@
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="CodeTable.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ErrorMessage.cs" />
     <Compile Include="Message\EventMessage.cs" />
     <Compile Include="Message\GeneralMessage.cs" />
     <Compile Include="Message\MessageBase.cs" />
+    <Compile Include="Message\MessageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

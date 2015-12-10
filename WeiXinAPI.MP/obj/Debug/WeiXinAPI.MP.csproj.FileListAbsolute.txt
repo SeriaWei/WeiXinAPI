@@ -1,7 +1,0 @@
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\bin\Debug\WeiXinAPI.MP.dll
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\bin\Debug\WeiXinAPI.MP.pdb
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\obj\Debug\WeiXinAPI.MP.csprojResolveAssemblyReference.cache
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\obj\Debug\WeiXinAPI.MP.dll
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\obj\Debug\WeiXinAPI.MP.pdb
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\bin\Debug\Newtonsoft.Json.dll
-E:\OtherProjects\WeiXinAPI\WeiXinAPI.MP\bin\Debug\Newtonsoft.Json.xml

@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using WeiXinAPI.MP.Message;
 
 namespace WeiXinAPI.MP
 {
@@ -52,6 +54,11 @@ namespace WeiXinAPI.MP
                 Tokens.Add(key, newtoken);
             }
             return newtoken;
+        }
+
+        public MessageBase GetMessage(Stream stream)
+        {
+            return new MessageProvider(stream).Parse();
         }
     }
 }
