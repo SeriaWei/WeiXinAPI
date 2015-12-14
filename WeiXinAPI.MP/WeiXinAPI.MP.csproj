@@ -53,10 +53,14 @@
     <Compile Include="Message\MessageBase.cs" />
     <Compile Include="Message\MessageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebService\AccessToken.cs" />
+    <Compile Include="WebService\Authorize.cs" />
+    <Compile Include="WebService\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

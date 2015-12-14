@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using WeiXinAPI.MP.Message;
+using WeiXinAPI.MP.WebService;
 
 namespace WeiXinAPI.MP
 {
@@ -44,14 +45,12 @@ namespace WeiXinAPI.MP
             WebClient client = new WebClient();
             var json = client.DownloadString(string.Format(TokenUrl, AppId, AppSecret));
             var newtoken = JsonConvert.DeserializeObject<AccessToken>(json);
-            if (newtoken.Token == null)
+            if (newtoken.Token != null)
             {
-                var errorMsg = JsonConvert.DeserializeObject<ErrorMessage>(json);
-                throw new Exception("获取Token错误:" + errorMsg.Code + ":" + errorMsg.Message);
-            }
-            lock (Tokens)
-            {
-                Tokens.Add(key, newtoken);
+                lock (Tokens)
+                {
+                    Tokens.Add(key, newtoken);
+                }
             }
             return newtoken;
         }
@@ -59,6 +58,17 @@ namespace WeiXinAPI.MP
         public MessageBase GetMessage(Stream stream)
         {
             return new MessageProvider(stream).Parse();
+        }
+
+        public string GetWebAuthorizeUrl(string redirect, string scope)
+        {
+            return Authorize.GetAuthorizeUrl(AppId, redirect, scope);
+        }
+
+        public UserInfo GetUserInfo(string code)
+        {
+            var token = Authorize.GetAccessToken(AppId, AppSecret, code);
+            return Authorize.GetUserInfo(token.Token, token.OpenId);
         }
     }
 }

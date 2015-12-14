@@ -7,26 +7,24 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using MvcApplication.Filters;
 using WeiXinAPI.MP;
 using WeiXinAPI.MP.Message;
 
 namespace MvcApplication.Controllers
 {
+
     public class HomeController : Controller
     {
         public const string AppID = "wx4dbf1515eb19ea47";
         public const string AppSecret = "a1c8aca9e20266ff6ff35dac9c83dffd";
         public const string Token = "weixinapi";
-        public ActionResult Index(string code)
+
+        [WeiXinUser]
+        public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            //if (code == null)
-            //{
-            //    return
-            //        Redirect(
-            //            string.Format("https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope={2}&state=STATE#wechat_redirect",
-            //            AppID, "http://seriawei.ngrok.natapp.cn/", "snsapi_base"));
-            //}
+
             return View();
         }
 
